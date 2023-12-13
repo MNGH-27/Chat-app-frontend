@@ -40,7 +40,7 @@ const RootProvider = ({ children }: TWrapperWithChildrenType) => {
             <QueryParamProvider adapter={NextAdapterApp}>
                 <StyleProvider cache={cache}>
                     {children}
-                    <Toaster />
+                    <Toaster position='bottom-right' reverseOrder={false} containerClassName='!text-sm' />
                 </StyleProvider>
             </QueryParamProvider>
             <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
