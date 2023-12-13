@@ -1,6 +1,7 @@
 import CAuthTemplate from '@templates/CAuthTemplate'
-const LandingPage = () => {
+
+const AuthPage = () => {
     return <CAuthTemplate />
 }
 
-export default LandingPage
+export default AuthPage

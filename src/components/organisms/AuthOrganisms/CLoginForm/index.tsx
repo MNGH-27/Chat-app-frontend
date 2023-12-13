@@ -59,7 +59,7 @@ const CLoginForm: FC<ICLoginFormProps> = ({ onChangeStage }) => {
             className='h-full w-full flex flex-col items-center justify-between gap-y-10 text-black'
         >
             <div className='flex flex-col items-center justify-center gap-y-2'>
-                <span className='font-semibold text-4xl'>Log in</span>
+                <span className='font-bold text-3xl'>Log in</span>
                 <span className='text-sm text-gray-400 font-medium text-center'>
                     welcome back, try to have connection with your friend
                 </span>

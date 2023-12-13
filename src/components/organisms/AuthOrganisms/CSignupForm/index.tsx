@@ -60,7 +60,7 @@ const CSignupForm: FC<ICSignupFormProps> = ({ onChangeStage }) => {
             className='h-full w-full flex flex-col items-center justify-between text-black'
         >
             <div className='flex flex-col items-center justify-center gap-y-2'>
-                <span className='font-semibold text-4xl'>Sign up</span>
+                <span className='font-semibold text-3xl'>Sign up</span>
                 <span className='text-sm text-gray-400 font-medium text-center'>
                     sign up to chat and feel new world of connection
                 </span>
