@@ -3,7 +3,7 @@ import type TGetEmailFormatPasswordFormType from '@core/types/forms/get-email-fo
 
 const forgetPasswordApi = async (data: TGetEmailFormatPasswordFormType) => {
     try {
-        const response = await axiosInterceptor.post('/auth/forgetPassword', data)
+        const response = await axiosInterceptor.post('/auth/forget-password', data)
 
         if (response.status === 201) {
             return response

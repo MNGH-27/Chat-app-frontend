@@ -3,7 +3,7 @@ import type TResetPasswordFormType from '@core/types/forms/reset-password-forget
 
 const resetPasswordApi = async (data: TResetPasswordFormType) => {
     try {
-        const response = await axiosInterceptor.post('/auth/resetPassword', data)
+        const response = await axiosInterceptor.post('/auth/reset-password', data)
 
         if (response.status === 201) {
             return response

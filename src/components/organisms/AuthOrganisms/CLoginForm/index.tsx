@@ -1,7 +1,6 @@
 'use client'
 
 import { type FC } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { Controller, useForm } from 'react-hook-form'
@@ -88,9 +87,9 @@ const CLoginForm: FC<ICLoginFormProps> = ({ onChangeStage }) => {
                 <div className='flex items-center justify-between flex-col sm:flex-row gap-y-1 w-full'>
                     <CCheckBox options={[{ label: 'remember me', value: 1 }]} />
 
-                    <Link href={'/forgetPassword'} className='font-medium text-xs sm:text-sm' type='link'>
+                    <CButton href={'/forget-password'} className='font-medium text-xs sm:text-sm px-0' type='link'>
                         Forgot Password ?
-                    </Link>
+                    </CButton>
                 </div>
             </div>
 

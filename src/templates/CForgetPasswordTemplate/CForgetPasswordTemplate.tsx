@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 
 import { IconArrowForwardUp } from '@tabler/icons-react'
 
 import { CEmailSubmit, COtpCode, CResetPassword } from '@organisms/ForgetPasswordOrganisms'
+import CButton from '@atoms/CButton'
 
 import type TForgetPasswordStage from '@core/types/auth/forget-password-stage-type'
 import type TForgetPasswordUser from '@core/types/auth/forget-password-user'
@@ -30,9 +30,9 @@ const CForgetPasswordTemplate = () => {
     return (
         <div className='flex items-center justify-center h-screen w-screen'>
             <div className='max-w-sm space-y-5'>
-                <Link href={'/'} className='flex items-center gap-x-1 text-primary hover:text-primary-700 duration-200'>
+                <CButton className='w-fit px-0' type='link' href='/'>
                     Return to login <IconArrowForwardUp />
-                </Link>
+                </CButton>
 
                 {stage === 'email' ? (
                     <CEmailSubmit onChangeStage={onChangeStageHandler} />
