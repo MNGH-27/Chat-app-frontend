@@ -2,6 +2,7 @@
 
 /* Vendors */
 @import './vendors/tailwind.css';
+@import './vendors/ant.css';
 
 /* Base */
 @import './base/base.css';

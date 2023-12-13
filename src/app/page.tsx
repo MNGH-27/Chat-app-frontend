@@ -1,7 +1,6 @@
-import { LandingTemplate } from '@templates/LandingTemplate'
-
+import CAuthTemplate from '@templates/CAuthTemplate'
 const LandingPage = () => {
-    return <LandingTemplate />
+    return <CAuthTemplate />
 }
 
 export default LandingPage

@@ -1,0 +1,7 @@
+.ant-input {
+    @apply !p-2 !text-base;
+}
+
+.ant-input-password {
+    @apply !p-0 !px-1;
+}
