@@ -35,7 +35,7 @@ const CSignupForm: FC<ICSignupFormProps> = ({ onChangeStage }) => {
     })
 
     const { mutate, isPending: isSubmitting } = useMutation({
-        mutationFn: (data: TSignupFieldType) => signupApi({ ...data }),
+        mutationFn: signupApi,
         onSuccess: (response) => {
             //user signup successfully
             toast.success('Signup successfully')
@@ -46,9 +46,11 @@ const CSignupForm: FC<ICSignupFormProps> = ({ onChangeStage }) => {
             push('/chat')
         },
         onError: (error) => {
+            //check if there is error from backend to show user
             if (error.message) {
-                toast.error(error.message)
+                toast.error(error.data.message)
             } else {
+                //some static error message,
                 toast.error('Signup failed')
             }
         }

@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import OTPInput from 'react-otp-input'
@@ -9,6 +7,7 @@ import { useMutation } from '@tanstack/react-query'
 import CFormField from '@molecules/CFormField'
 import CButton from '@atoms/CButton'
 
+import useCountDown from '@core/hooks/useCountDown'
 import checkOtpCodeApi from '@core/services/api/auth/check-otp-code-api'
 import type TCheckCOtpCodeField from '@core/types/forms/check-otp-forget-password-form-type'
 import forgetPasswordOtpCodeSchema from '@core/utils/validations/forget-password-otp-code-schema'
@@ -16,29 +15,7 @@ import forgetPasswordOtpCodeSchema from '@core/utils/validations/forget-password
 import { type ICOtpCodeProps } from './resources'
 
 const COtpCode: React.FC<ICOtpCodeProps> = ({ onChangeStage, user }) => {
-    // initialize timeLeft with the seconds prop
-    const [timeLeft, setTimeLeft] = useState<number>(120)
-
-    useEffect(() => {
-        // exit early when we reach 0
-        if (!timeLeft) {
-            //send user to send email again
-            onChangeStage('email')
-            return
-        }
-
-        // save intervalId to clear the interval when the
-        // component re-renders
-        const intervalId = setInterval(() => {
-            setTimeLeft(timeLeft - 1)
-        }, 1000)
-
-        // clear interval on re-render to avoid memory leaks
-        return () => clearInterval(intervalId)
-        // add timeLeft as a dependency to re-rerun the effect
-        // when we update it
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [timeLeft])
+    const { time } = useCountDown(120)
 
     const {
         handleSubmit,
@@ -53,7 +30,7 @@ const COtpCode: React.FC<ICOtpCodeProps> = ({ onChangeStage, user }) => {
     })
 
     const { mutate, isPending: isSubmitting } = useMutation({
-        mutationFn: (data: TCheckCOtpCodeField) => checkOtpCodeApi(data),
+        mutationFn: checkOtpCodeApi,
         onSuccess: (response) => {
             //otp code sent successfully
             toast.success(response.data.message)
@@ -62,7 +39,7 @@ const COtpCode: React.FC<ICOtpCodeProps> = ({ onChangeStage, user }) => {
         },
         onError: (error) => {
             if (error.message) {
-                toast.error(error.message)
+                toast.error(error.data.message)
             } else {
                 toast.error('failed in Otp code')
             }
@@ -99,7 +76,11 @@ const COtpCode: React.FC<ICOtpCodeProps> = ({ onChangeStage, user }) => {
                 />
 
                 <p className='text-xs'>
-                    you have <span className='font-semibold'>{timeLeft}</span> secondes to submit otp code
+                    you have{' '}
+                    <span className='font-semibold w-[50px]'>
+                        {time.minutes}:{time.seconds}
+                    </span>{' '}
+                    secondes to submit otp code
                 </p>
 
                 <CButton loading={isSubmitting} htmlType='submit' type='primary' className='mr-auto h-auto px-5 py-2'>

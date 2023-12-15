@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { type AxiosError } from 'axios'
 import { deleteCookie, getCookie } from 'cookies-next'
 import qs from 'qs'
 
@@ -34,7 +34,7 @@ axiosInterceptorInstance.interceptors.response.use(
         } catch (error) {
             // console.error(error)
         }
-        return Promise.reject(error)
+        return Promise.reject(error as AxiosError)
     }
 )
 
@@ -52,7 +52,7 @@ axiosInterceptorInstance.interceptors.request.use(
     },
     (error) => {
         // Handle request errors here
-        return Promise.reject(error)
+        return Promise.reject(error as AxiosError)
     }
 )
 

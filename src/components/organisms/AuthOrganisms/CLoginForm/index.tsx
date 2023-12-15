@@ -35,7 +35,7 @@ const CLoginForm: FC<ICLoginFormProps> = ({ onChangeStage }) => {
     })
 
     const { mutate, isPending: isSubmitting } = useMutation({
-        mutationFn: (data: TLoginFormType) => loginApi(data),
+        mutationFn: loginApi,
         onSuccess: (response) => {
             //show status of login
             toast.success('login successfully')
@@ -47,7 +47,7 @@ const CLoginForm: FC<ICLoginFormProps> = ({ onChangeStage }) => {
             push('/chat')
         },
         onError: (error) => {
-            toast.error(error.message)
+            toast.error(error.data.message)
         }
     })
 

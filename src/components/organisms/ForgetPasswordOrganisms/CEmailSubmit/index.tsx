@@ -10,7 +10,6 @@ import CButton from '@atoms/CButton'
 import CInput from '@atoms/CInput'
 
 import forgetPasswordApi from '@core/services/api/auth/forget-password-api'
-import type TGetEmailFormatPasswordFormType from '@core/types/forms/get-email-forget-password-form-type'
 import forgetPasswordSubmitEmailSchema from '@core/utils/validations/forget-password-submit-email-schema'
 
 import { type ICEmailSubmitProps } from './resources'
@@ -28,7 +27,7 @@ const CEmailSubmit: React.FC<ICEmailSubmitProps> = ({ onChangeStage }) => {
     })
 
     const { mutate, isPending: isSubmitting } = useMutation({
-        mutationFn: (data: TGetEmailFormatPasswordFormType) => forgetPasswordApi(data),
+        mutationFn: forgetPasswordApi,
         onSuccess: (response) => {
             // show success of sending email
             toast.success(response.data.message)
@@ -41,7 +40,7 @@ const CEmailSubmit: React.FC<ICEmailSubmitProps> = ({ onChangeStage }) => {
         },
         onError: (error) => {
             if (error.message) {
-                toast.error(error.message)
+                toast.error(error.data.message)
             } else {
                 toast.error('sending email failed')
             }

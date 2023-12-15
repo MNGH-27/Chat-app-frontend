@@ -32,7 +32,7 @@ const CResetPassword: React.FC<ICResetPasswordProps> = ({ userId }) => {
     })
 
     const { mutate, isPending: isSubmitting } = useMutation({
-        mutationFn: (data: TResetPasswordFormType) => resetPasswordApi(data),
+        mutationFn: resetPasswordApi,
         onSuccess: (response) => {
             //reset password successfully
             toast.success(response.data.message)
@@ -44,7 +44,7 @@ const CResetPassword: React.FC<ICResetPasswordProps> = ({ userId }) => {
         },
         onError: (error) => {
             if (error.message) {
-                toast.error(error.message)
+                toast.error(error.data.message)
             } else {
                 toast.error('reset password failed')
             }
