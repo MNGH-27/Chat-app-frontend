@@ -1,5 +1,5 @@
 enum QueryKeysEnum {
-    ExampleList = 'get-all-examples'
+    CurrentUser = 'current_user'
 }
 
 export default QueryKeysEnum
