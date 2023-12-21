@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 
 import { CLoginForm, CSignupForm } from '@organisms/AuthOrganisms'
+import CImage from '@atoms/CImage'
 
 import type TAuthStage from '@core/types/auth/auth-stage-type'
 
@@ -25,7 +25,7 @@ function CAuthTemplate() {
             </div>
 
             <div className='hidden lg:flex lg:col-span-7 w-full h-full items-center justify-center'>
-                <Image width={700} height={600} src='/icons/login.svg' alt='logo' priority />
+                <CImage width={700} height={600} src='/icons/login.svg' alt='logo' priority />
             </div>
         </div>
     )
