@@ -4,12 +4,12 @@ import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { setCookie } from 'cookies-next'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
 import CButton from '@atoms/CButton'
 import CInput from '@atoms/CInput'
 
+import useAppMutation from '@core/hooks/useAppMutation'
 import resetPasswordApi from '@core/services/api/auth/reset-password-api'
 import type TResetPasswordFormType from '@core/types/forms/reset-password-forget-password-form-type'
 import forgetPasswordResetPasswordSchema from '@core/utils/validations/forget-password-reset-password-schema'
@@ -31,7 +31,7 @@ const CResetPassword: React.FC<ICResetPasswordProps> = ({ userId }) => {
         resolver: yupResolver(forgetPasswordResetPasswordSchema)
     })
 
-    const { mutate, isPending: isSubmitting } = useMutation({
+    const { mutate, isPending: isSubmitting } = useAppMutation({
         mutationFn: resetPasswordApi,
         onSuccess: (response) => {
             //reset password successfully

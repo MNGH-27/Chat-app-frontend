@@ -2,11 +2,11 @@ import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import OTPInput from 'react-otp-input'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
 import CButton from '@atoms/CButton'
 
+import useAppMutation from '@core/hooks/useAppMutation'
 import useCountDown from '@core/hooks/useCountDown'
 import checkOtpCodeApi from '@core/services/api/auth/check-otp-code-api'
 import type TCheckCOtpCodeField from '@core/types/forms/check-otp-forget-password-form-type'
@@ -29,7 +29,7 @@ const COtpCode: React.FC<ICOtpCodeProps> = ({ onChangeStage, user }) => {
         resolver: yupResolver(forgetPasswordOtpCodeSchema)
     })
 
-    const { mutate, isPending: isSubmitting } = useMutation({
+    const { mutate, isPending: isSubmitting } = useAppMutation({
         mutationFn: checkOtpCodeApi,
         onSuccess: (response) => {
             //otp code sent successfully

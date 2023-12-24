@@ -1,9 +1,19 @@
 import { useMutation } from '@tanstack/react-query'
 
-const useAppMutation = ({ ...rest }) => {
-    return useMutation({
-        ...rest
-    })
+import { type TCriticalAnyType } from '@core/types/common/critical-any'
+
+import { type TUseAppMutationOptionsType } from './resources'
+
+const useAppMutation = <
+    TData = Promise<TCriticalAnyType>,
+    TError = TCriticalAnyType,
+    TVariables = TCriticalAnyType,
+    TContext = unknown
+>({
+    ...options
+}: TUseAppMutationOptionsType<TData, TError, TVariables, TContext>) => {
+    const { ...mutation } = useMutation(options)
+    return mutation
 }
 
 export default useAppMutation

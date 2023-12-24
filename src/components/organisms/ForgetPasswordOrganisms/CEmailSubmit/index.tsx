@@ -3,12 +3,12 @@
 import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
 import CButton from '@atoms/CButton'
 import CInput from '@atoms/CInput'
 
+import useAppMutation from '@core/hooks/useAppMutation'
 import forgetPasswordApi from '@core/services/api/auth/forget-password-api'
 import forgetPasswordSubmitEmailSchema from '@core/utils/validations/forget-password-submit-email-schema'
 
@@ -26,7 +26,7 @@ const CEmailSubmit: React.FC<ICEmailSubmitProps> = ({ onChangeStage }) => {
         resolver: yupResolver(forgetPasswordSubmitEmailSchema)
     })
 
-    const { mutate, isPending: isSubmitting } = useMutation({
+    const { mutate, isPending: isSubmitting } = useAppMutation({
         mutationFn: forgetPasswordApi,
         onSuccess: (response) => {
             // show success of sending email

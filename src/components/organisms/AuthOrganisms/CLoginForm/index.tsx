@@ -7,13 +7,13 @@ import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { setCookie } from 'cookies-next'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
 import CButton from '@atoms/CButton'
 import CCheckBox from '@atoms/CCheckBox'
 import CInput from '@atoms/CInput'
 
+import useAppMutation from '@core/hooks/useAppMutation'
 import loginApi from '@core/services/api/auth/login-api'
 import type TLoginFormType from '@core/types/forms/login-form-type'
 import loginSchema from '@core/utils/validations/login-schema'
@@ -34,7 +34,7 @@ const CLoginForm: FC<ICLoginFormProps> = ({ onChangeStage }) => {
         resolver: yupResolver(loginSchema)
     })
 
-    const { mutate, isPending: isSubmitting } = useMutation({
+    const { mutate, isPending: isSubmitting } = useAppMutation({
         mutationFn: loginApi,
         onSuccess: (response) => {
             //show status of login

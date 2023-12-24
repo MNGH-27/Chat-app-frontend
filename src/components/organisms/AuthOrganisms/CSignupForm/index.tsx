@@ -7,13 +7,13 @@ import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { setCookie } from 'cookies-next'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
 import CProfileDropZone from '@molecules/CProfileDropZone'
 import CButton from '@atoms/CButton'
 import CInput from '@atoms/CInput'
 
+import useAppMutation from '@core/hooks/useAppMutation'
 import signupApi from '@core/services/api/auth/signup-api'
 import type TSignupFieldType from '@core/types/forms/signup-form-type'
 import signupSchema from '@core/utils/validations/signup-schema'
@@ -34,7 +34,7 @@ const CSignupForm: FC<ICSignupFormProps> = ({ onChangeStage }) => {
         resolver: yupResolver(signupSchema)
     })
 
-    const { mutate, isPending: isSubmitting } = useMutation({
+    const { mutate, isPending: isSubmitting } = useAppMutation({
         mutationFn: signupApi,
         onSuccess: (response) => {
             //user signup successfully
