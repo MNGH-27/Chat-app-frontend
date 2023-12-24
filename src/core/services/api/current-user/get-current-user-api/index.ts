@@ -4,7 +4,7 @@ import { axiosInterceptor } from '@core/services/axios'
 
 const getCurrentUserApi = async () => {
     try {
-        const response = await axiosInterceptor.get('/user/current_user')
+        const response = await axiosInterceptor.get('/user/current-user')
 
         if (response.status === 201) {
             return response
