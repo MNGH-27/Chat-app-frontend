@@ -1,6 +1,6 @@
 import CChatLayoutSidebar from './components/CChatLayoutSidebar'
-
-export { CChatLayoutSidebar }
+import CConnectUserModal from './components/CConnectUserModal/CConnectUserModal'
+export { CChatLayoutSidebar, CConnectUserModal }
 
 import type ICChatLayoutProps from './types'
 

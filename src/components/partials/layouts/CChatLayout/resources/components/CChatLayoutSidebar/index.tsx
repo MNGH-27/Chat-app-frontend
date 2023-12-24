@@ -1,17 +1,16 @@
 'use client'
 
-import React, { useState } from 'react'
+import { type FC } from 'react'
 
 import { IconExternalLink } from '@tabler/icons-react'
 
 import CButton from '@atoms/CButton'
 import CImage from '@atoms/CImage'
 
+import type { ICChatLayoutSidebarProps } from './resources'
 import { CSidebarSingleUser } from './resources'
 
-const CChatLayoutSidebar = () => {
-    const [isShowConnectUserModal, setIsShowConnectUserModal] = useState(false)
-
+const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUserModal }) => {
     return (
         <>
             <div className='flex items-center justify-between w-full border-b-2 pb-3'>
@@ -20,7 +19,7 @@ const CChatLayoutSidebar = () => {
             </div>
             <CButton
                 onClick={() => setIsShowConnectUserModal(true)}
-                className='w-full my-5 py-3 h-auto font-bold'
+                className='w-full my-5 py-3 h-auto font-semibold'
                 type='primary'
             >
                 connect friend
