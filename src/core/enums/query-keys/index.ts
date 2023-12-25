@@ -1,3 +1,6 @@
-import QueryKeysEnum from './query-keys.enums'
+enum QueryKeysEnum {
+    CurrentUser = 'current_user',
+    RoomDetail = 'room-detail'
+}
 
-export { QueryKeysEnum }
+export default QueryKeysEnum

@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 
-import { QueryKeysEnum } from '@core/enums/query-keys'
+import QueryKeysEnum from '@core/enums/query-keys'
 import getRoomByIdApi from '@core/services/api/room/get-room-by-id-api'
 import type TRoomDetailType from '@core/types/room/room-detail-type'
 

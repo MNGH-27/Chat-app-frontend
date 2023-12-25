@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import CModal from '@atoms/CModal'
 
-import { QueryKeysEnum } from '@core/enums/query-keys'
+import QueryKeysEnum from '@core/enums/query-keys'
 import getCurrentUserApi from '@core/services/api/current-user/get-current-user-api'
 
 import { CChatLayoutSidebar, CConnectUserModal, type ICChatLayoutProps } from './resources'
