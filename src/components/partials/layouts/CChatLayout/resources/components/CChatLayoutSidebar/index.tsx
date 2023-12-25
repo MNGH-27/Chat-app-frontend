@@ -15,7 +15,7 @@ const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUser
         <>
             <div className='flex items-center justify-between w-full border-b-2 pb-3'>
                 <CImage src='/images/logo.png' alt='logo' width={40} height={40} />
-                <span className='font-bold text-lg'>ChatApp</span>
+                <span className='font-semibold text-lg'>ChatApp</span>
             </div>
             <CButton
                 onClick={() => setIsShowConnectUserModal(true)}

@@ -51,12 +51,12 @@ const CSearchForUserForm: React.FC<ICSearchForUserFormProps> = ({ toggleStage })
 
     return (
         <>
-            <span className='font-bold'>CONNECT TO YOUR FRIEND</span>
+            <span className='font-semibold'>CONNECT TO YOUR FRIEND</span>
             <div className='flex flex-col items-start w-full mt-5'>
                 <span className='font-medium'>Enter your friend&apos;s ID to connect with</span>
                 <form
                     onSubmit={handleSubmit((values) => mutate(values.userName))}
-                    className='mt-5 flex flex-col gap-y-2 w-full'
+                    className='mt-5 flex flex-col gap-y-4 w-full'
                     method='post'
                 >
                     <Controller

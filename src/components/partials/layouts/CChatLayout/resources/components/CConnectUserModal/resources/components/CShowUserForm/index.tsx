@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 
 import toast from 'react-hot-toast'
-import { IconCornerDownLeft, IconMessageCircle2Filled } from '@tabler/icons-react'
+import { IconArrowBack, IconMessageCircle2Filled } from '@tabler/icons-react'
 
 import CButton from '@atoms/CButton'
 import CImage from '@atoms/CImage'
@@ -39,8 +39,8 @@ const CShowUserForm: React.FC<ICShowUserFormProps> = ({ toggleStage, userData, c
 
     return (
         <div>
-            <CButton onClick={() => toggleStage({ nextStep: 'search' })} className='text-black px-0' type='link'>
-                <IconCornerDownLeft size={24} />
+            <CButton onClick={() => toggleStage({ nextStep: 'search' })} className='px-0' type='link'>
+                <IconArrowBack size={24} />
                 Try Again
             </CButton>
             <div className='flex flex-col items-center justify-between gap-y-5 w-full pt-5'>
@@ -54,11 +54,11 @@ const CShowUserForm: React.FC<ICShowUserFormProps> = ({ toggleStage, userData, c
                 <div className='flex flex-col gap-y-5 w-3/4'>
                     <div className='text-base sm:text-lg flex items-center justify-between'>
                         <span className=''>UserName : </span>
-                        <span className='text-black font-bold'>{userData.userName}</span>
+                        <span className='text-black font-semibold'>{userData.userName}</span>
                     </div>
                     <div className='text-base sm:text-lg flex items-center justify-between'>
                         <span className=''>Email : </span>
-                        <span className='text-black font-bold'>{userData.email}</span>
+                        <span className='text-black font-semibold'>{userData.email}</span>
                     </div>
                 </div>
                 <CButton
