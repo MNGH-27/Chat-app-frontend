@@ -1,5 +1,7 @@
+import CEmptyChatTemplate from '@templates/CEmptyChat'
+
 const EmptyChatPage = () => {
-    return <div>EmptyChatPage</div>
+    return <CEmptyChatTemplate />
 }
 
 export default EmptyChatPage
