@@ -1,16 +1,31 @@
+'use client'
+
+import { type FC } from 'react'
+import { useRouter } from 'next/navigation'
 
 import CImage from '@atoms/CImage'
 
-const CSidebarSingleUser = () => {
+import { type ICSidebarSingleUserProps } from './resources'
+
+const CSidebarSingleUser: FC<ICSidebarSingleUserProps> = ({ friendData }) => {
+    const { push } = useRouter()
+
     return (
-        <div className='flex items-center justify-between w-full hover:bg-[#f9f9f9] p-3 duration-200 rounded'>
-            <div className='relative w-12 h-12 rounded-full'>
-                <CImage className='rounded-full' src='/images/panda.png' alt='logo' fill />
+        <div
+            onClick={() => push(`/chat/${friendData.message.roomId}`)}
+            className='cursor-pointer flex items-center justify-between w-full max-w-full hover:bg-[#f9f9f9] p-3 duration-200 rounded'
+        >
+            <div className='flex flex-col items-start justify-start gap-2 text-sm max-w-full truncate'>
+                <span className='font-semibold'>{friendData.user.userName}</span>
+                <span className='text-gray-800 text-xs truncate max-w-full'>{friendData.message.context}</span>
             </div>
-            <div className='flex flex-col items-start justify-start gap-2 text-sm'>
-                <span className='font-semibold'>userName</span>
-                <span className='text-gray-800 text-xs'>last message</span>
-            </div>
+            <CImage
+                className='rounded-full object-cover aspect-square'
+                width={48}
+                height={48}
+                src={friendData.user.profile}
+                alt={friendData.user.userName}
+            />
         </div>
     )
 }

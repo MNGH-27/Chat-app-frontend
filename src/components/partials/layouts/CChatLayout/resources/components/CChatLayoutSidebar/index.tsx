@@ -8,18 +8,18 @@ import { useQuery } from '@tanstack/react-query'
 import CButton from '@atoms/CButton'
 import CImage from '@atoms/CImage'
 
+import QueryKeysEnum from '@core/enums/query-keys'
 import getConnectedUserListApi from '@core/services/api/room/get-connected-user-list-api'
+import type TSingleConnectedUserType from '@core/types/connect-user/single-connected-user-type'
 
 import type { ICChatLayoutSidebarProps } from './resources'
 import { CSidebarSingleUser } from './resources'
 
 const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUserModal }) => {
-    const { data } = useQuery({
-        queryKey: ['asd'],
+    const { data: connectedUsersList, isSuccess } = useQuery<TSingleConnectedUserType[]>({
+        queryKey: [QueryKeysEnum.ConnectedUsersList],
         queryFn: getConnectedUserListApi
     })
-
-    console.log('data : ', data)
 
     return (
         <>
@@ -36,9 +36,8 @@ const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUser
                 <IconExternalLink size={24} />
             </CButton>
             <div className='flex items-center justify-start flex-col gap-y-2 w-full'>
-                <CSidebarSingleUser />
-                <CSidebarSingleUser />
-                <CSidebarSingleUser />
+                {isSuccess &&
+                    connectedUsersList.map((item) => <CSidebarSingleUser key={item.user.id} friendData={item} />)}
             </div>
         </>
     )
