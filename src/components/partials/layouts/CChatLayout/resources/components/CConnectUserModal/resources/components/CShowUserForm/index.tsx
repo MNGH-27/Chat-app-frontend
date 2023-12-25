@@ -17,7 +17,7 @@ const CShowUserForm: React.FC<ICShowUserFormProps> = ({ toggleStage, userData, c
     const { push } = useRouter()
 
     const { mutate, isPending: isSubmitting } = useAppMutation({
-        mutationFn: () => connectRoomApi({ receiverId: userData.id }),
+        mutationFn: () => connectRoomApi(userData.id),
         onSuccess: (response) => {
             //show success message
             toast.success(response.data.message)

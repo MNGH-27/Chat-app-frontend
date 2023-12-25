@@ -2,9 +2,11 @@ import { isAxiosError } from 'axios'
 
 import { axiosInterceptor } from '@core/services/axios'
 
-const connectRoomApi = async (data) => {
+const connectRoomApi = async (userId: string) => {
     try {
-        const response = await axiosInterceptor.get(`/room/connectRoom`, data)
+        const response = await axiosInterceptor.post(`/room/connect-room`, {
+            receiverId: userId
+        })
 
         if (response.status === 201) {
             return response
