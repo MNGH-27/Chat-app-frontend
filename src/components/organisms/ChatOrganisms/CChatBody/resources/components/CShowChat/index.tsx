@@ -34,7 +34,7 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
                 <ChatMessage
                     key={singleMessage.id}
                     content={singleMessage.context}
-                    isCurrentUser={singleMessage.senderId === roomDate.sender.id}
+                    isCurrentUser={singleMessage.receiverId === roomDate.sender.id}
                 />
             ))}
         </div>
