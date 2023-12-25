@@ -12,7 +12,7 @@ import { ChatMessage, type ICShowChatsProps } from './resources'
 const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
     const chatBody = useRef<HTMLDivElement | null>(null)
 
-    const { data, refetch } = useQuery<TSingleMessageType[]>({
+    const { data, refetch } = useQuery<{ messages: TSingleMessageType[] }>({
         queryKey: [QueryKeysEnum.RoomMessageList],
         queryFn: () => getMessageListByIdApi(roomDate.room.id),
         refetchOnWindowFocus: true
@@ -30,7 +30,7 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
             className='grow max-h-[calc(100vh-100px)] overflow-y-auto flex flex-col gap-y-3 w-full p-2 mb-3'
         >
             {//loop on messages list
-            data?.map((singleMessage) => (
+            data?.messages.map((singleMessage) => (
                 <ChatMessage
                     key={singleMessage.id}
                     content={singleMessage.context}

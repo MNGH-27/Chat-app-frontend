@@ -4,6 +4,7 @@ import { type FC } from 'react'
 
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { IconBrandTelegram } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
 
 import CFormField from '@molecules/CFormField'
@@ -64,8 +65,12 @@ const CInputChat: FC<ICInputChatProps> = ({ socket, roomDate }) => {
                     </CFormField>
                 )}
             />
-            {/* icon={<FiSend size={20} />}  */}
-            <CButton htmlType='submit' type='primary' />
+            <CButton
+                className='h-full aspect-square'
+                icon={<IconBrandTelegram size={20} />}
+                htmlType='submit'
+                type='primary'
+            />
         </form>
     )
 }
