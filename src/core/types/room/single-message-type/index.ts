@@ -4,6 +4,7 @@ type TSingleMessageType = {
     receiverId: string
     roomId: string
     senderId: string
+    createdAt: Date
 }
 
 export default TSingleMessageType

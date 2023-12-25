@@ -1,4 +1,6 @@
-import { type FC, useRef } from 'react'
+'use client'
+
+import { type FC, useEffect, useRef } from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 
@@ -12,17 +14,27 @@ import { ChatMessage, type ICShowChatsProps } from './resources'
 const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
     const chatBody = useRef<HTMLDivElement | null>(null)
 
-    const { data, refetch } = useQuery<{ messages: TSingleMessageType[] }>({
+    const { data, isFetching, refetch } = useQuery<{ messages: TSingleMessageType[] }>({
         queryKey: [QueryKeysEnum.RoomMessageList],
         queryFn: () => getMessageListByIdApi(roomDate.room.id),
+        refetchOnMount: true,
         refetchOnWindowFocus: true
     })
 
-    socket.on(SocketKeysEnum.CheckNewMessage, () => {
-        console.log('come here')
+    useEffect(() => {
+        const handleCheckNewMessage = () => {
+            if (!isFetching) {
+                refetch()
+            }
+        }
 
-        refetch()
-    })
+        socket.on(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+
+        // Clean up the event listener when the component unmounts or when the dependency changes
+        return () => {
+            socket.off(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+        }
+    }, [isFetching, refetch, socket])
 
     return (
         <div
@@ -33,7 +45,7 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
             data?.messages.map((singleMessage) => (
                 <ChatMessage
                     key={singleMessage.id}
-                    content={singleMessage.context}
+                    singleMessage={singleMessage}
                     isCurrentUser={singleMessage.receiverId === roomDate.sender.id}
                 />
             ))}

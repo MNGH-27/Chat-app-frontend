@@ -1,5 +1,7 @@
+import type TSingleMessageType from '@core/types/room/single-message-type'
+
 interface ICSingleChatMessage {
-    content: string
+    singleMessage: TSingleMessageType
     isCurrentUser: boolean
 }
 

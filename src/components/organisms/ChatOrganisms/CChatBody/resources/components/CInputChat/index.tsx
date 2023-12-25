@@ -49,7 +49,7 @@ const CInputChat: FC<ICInputChatProps> = ({ socket, roomDate }) => {
 
                 reset()
             })}
-            className='w-full flex items-start justify-between gap-x-2'
+            className='w-full flex items-start justify-between gap-x-2 p-2'
         >
             <Controller
                 name='context'
