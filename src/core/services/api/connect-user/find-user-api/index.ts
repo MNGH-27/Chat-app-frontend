@@ -4,9 +4,9 @@ import { axiosInterceptor } from '@core/services/axios'
 
 const findUserApi = async (userName: string) => {
     try {
-        const response = await axiosInterceptor.get(`/user/finduser?userName=${userName}`)
+        const response = await axiosInterceptor.get(`/user/find-user?userName=${userName}`)
 
-        if (response.status === 201) {
+        if (response.status === 200) {
             return response
         }
 

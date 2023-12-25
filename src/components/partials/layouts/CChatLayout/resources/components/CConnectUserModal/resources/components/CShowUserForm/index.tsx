@@ -1,12 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import toast from 'react-hot-toast'
 import { IconCornerDownLeft, IconMessageCircle2Filled } from '@tabler/icons-react'
 
 import CButton from '@atoms/CButton'
+import CImage from '@atoms/CImage'
 
 import useAppMutation from '@core/hooks/useAppMutation'
 import connectRoomApi from '@core/services/api/connect-user/connect-room-api'
@@ -44,7 +44,7 @@ const CShowUserForm: React.FC<ICShowUserFormProps> = ({ toggleStage, userData, c
                 Try Again
             </CButton>
             <div className='flex flex-col items-center justify-between gap-y-5 w-full pt-5'>
-                <Image
+                <CImage
                     src={userData.profile}
                     alt='profile'
                     width={100}

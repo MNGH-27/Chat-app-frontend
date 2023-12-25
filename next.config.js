@@ -31,7 +31,15 @@ const nextConfig = {
         return config
     },
     images: {
-        minimumCacheTTL: 3600
+        minimumCacheTTL: 3600,
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'assets.vercel.com',
+                port: '',
+                pathname: '/image/upload/**'
+            }
+        ]
     }
 }
 
