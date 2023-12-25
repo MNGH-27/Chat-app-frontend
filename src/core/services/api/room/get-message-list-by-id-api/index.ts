@@ -2,9 +2,9 @@ import { isAxiosError } from 'axios'
 
 import { axiosInterceptor } from '@core/services/axios'
 
-const getRoomByIdApi = async (roomId: string) => {
+const getMessageListByIdApi = async (roomId: string) => {
     try {
-        const response = await axiosInterceptor.get(`/room/room-detail?roomId=${roomId}`)
+        const response = await axiosInterceptor.get(`/message/list?roomId=${roomId}`)
 
         if (response.status === 200) {
             return response.data.data
@@ -19,4 +19,4 @@ const getRoomByIdApi = async (roomId: string) => {
     }
 }
 
-export default getRoomByIdApi
+export default getMessageListByIdApi

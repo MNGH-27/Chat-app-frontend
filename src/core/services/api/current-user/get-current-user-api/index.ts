@@ -7,7 +7,7 @@ const getCurrentUserApi = async () => {
         const response = await axiosInterceptor.get('/user/current-user')
 
         if (response.status === 201) {
-            return response
+            return response.data
         }
 
         return Promise.reject(response)
