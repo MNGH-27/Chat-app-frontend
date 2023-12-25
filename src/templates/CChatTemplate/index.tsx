@@ -1,26 +1,28 @@
 'use client'
 
+import { type FC } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 
-import { CChatBody, CChatHeader } from '@organisms/ChatOrganisms'
+import { CChatBody, CChatError, CChatHeader, CLoadingChat } from '@organisms/ChatOrganisms'
 
 import QueryKeysEnum from '@core/enums/query-keys'
 import getRoomByIdApi from '@core/services/api/room/get-room-by-id-api'
+import type ICChatTemplateProps from '@core/types/html/chat-template-type'
 import type TRoomDetailType from '@core/types/room/room-detail-type'
 
-const CChatTemplate = () => {
+const CChatTemplate: FC<ICChatTemplateProps> = ({ roomId }) => {
     const { data, isLoading, isError, isSuccess } = useQuery<TRoomDetailType>({
-        queryKey: [QueryKeysEnum.RoomDetail],
-        //6589324c2d694cd5f37dce79
-        queryFn: () => getRoomByIdApi('658962e1db004c4de168c54b')
+        queryKey: [QueryKeysEnum.RoomDetail, { roomId }],
+        queryFn: () => getRoomByIdApi(roomId)
     })
 
     if (isLoading) {
-        return <span>loading . . .</span>
+        return <CLoadingChat />
     }
 
     if (isError) {
-        return <span>there is err</span>
+        return <CChatError />
     }
 
     if (isSuccess) {
