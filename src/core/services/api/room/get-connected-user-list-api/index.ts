@@ -2,9 +2,9 @@ import { isAxiosError } from 'axios'
 
 import { axiosInterceptor } from '@core/services/axios'
 
-const getCurrentUserApi = async () => {
+const getConnectedUserListApi = async () => {
     try {
-        const response = await axiosInterceptor.get('/user/current-user')
+        const response = await axiosInterceptor.get(`/room/connected-users-list`)
 
         if (response.status === 200) {
             return response.data.data
@@ -19,4 +19,4 @@ const getCurrentUserApi = async () => {
     }
 }
 
-export default getCurrentUserApi
+export default getConnectedUserListApi

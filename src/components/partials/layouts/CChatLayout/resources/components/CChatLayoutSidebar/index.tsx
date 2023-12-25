@@ -3,14 +3,24 @@
 import { type FC } from 'react'
 
 import { IconExternalLink } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
 
 import CButton from '@atoms/CButton'
 import CImage from '@atoms/CImage'
+
+import getConnectedUserListApi from '@core/services/api/room/get-connected-user-list-api'
 
 import type { ICChatLayoutSidebarProps } from './resources'
 import { CSidebarSingleUser } from './resources'
 
 const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUserModal }) => {
+    const { data } = useQuery({
+        queryKey: ['asd'],
+        queryFn: getConnectedUserListApi
+    })
+
+    console.log('data : ', data)
+
     return (
         <>
             <div className='flex items-center justify-between w-full border-b-2 pb-3'>

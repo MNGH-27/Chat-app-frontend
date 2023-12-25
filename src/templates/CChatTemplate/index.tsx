@@ -11,7 +11,8 @@ import type TRoomDetailType from '@core/types/room/room-detail-type'
 const CChatTemplate = () => {
     const { data, isLoading, isError, isSuccess } = useQuery<TRoomDetailType>({
         queryKey: [QueryKeysEnum.RoomDetail],
-        queryFn: () => getRoomByIdApi('6589324c2d694cd5f37dce79')
+        //6589324c2d694cd5f37dce79
+        queryFn: () => getRoomByIdApi('658962e1db004c4de168c54b')
     })
 
     if (isLoading) {
