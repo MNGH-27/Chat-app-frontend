@@ -2,7 +2,7 @@
 
 import { type FC, useEffect, useRef } from 'react'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import QueryKeysEnum from '@core/enums/query-keys'
 import SocketKeysEnum from '@core/enums/socket-keys'
@@ -14,6 +14,7 @@ import type TSingleUserType from '@core/types/user/single-user-type'
 import { ChatMessage, type ICShowChatsProps } from './resources'
 
 const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
+    const queryClient = useQueryClient()
     const chatBody = useRef<HTMLDivElement | null>(null)
 
     const { data, isFetching, refetch } = useQuery<{ messages: TSingleMessageType[] }>({
@@ -26,8 +27,11 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
     useEffect(() => {
         const handleCheckNewMessage = () => {
             if (!isFetching) {
+                //refetch messages list after message created successfully
                 refetch()
             }
+
+            queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.ConnectedUsersList] })
         }
 
         socket.on(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
