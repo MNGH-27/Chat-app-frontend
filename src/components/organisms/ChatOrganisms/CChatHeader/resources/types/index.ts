@@ -1,7 +1,7 @@
-import type TSingleUserType from '@core/types/user/single-user-type'
+import type TRoomDetailType from '@core/types/room/room-detail-type'
 
 interface ICChatHeaderProps {
-    receiver: TSingleUserType
+    roomData: TRoomDetailType
 }
 
 export default ICChatHeaderProps

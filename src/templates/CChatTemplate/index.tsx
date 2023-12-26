@@ -28,7 +28,7 @@ const CChatTemplate: FC<ICChatTemplateProps> = ({ roomId }) => {
     if (isSuccess) {
         return (
             <div className='w-full flex flex-col justify-center items-start h-screen'>
-                <CChatHeader receiver={data.receiver} />
+                <CChatHeader roomData={data} />
                 <CChatBody roomData={data} />
             </div>
         )
