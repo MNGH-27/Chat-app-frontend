@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     // Getting cookies from the request using the `RequestCookies` API
-    let token = request.cookies.get('token')
+    const token = request.cookies.get('token')
 
     //check if there is token cookie and we are in chat page
     if (!token?.value && request.url.includes('chat')) {

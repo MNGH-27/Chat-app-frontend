@@ -14,6 +14,7 @@ import type TSingleConnectedUserType from '@core/types/connect-user/single-conne
 
 import type { ICChatLayoutSidebarProps } from './resources'
 import { CSidebarSingleUser } from './resources'
+import CLoadingSidebar from './resources/components/CLoadingSidebar'
 
 const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUserModal }) => {
     const { data: connectedUsersList, isSuccess } = useQuery<TSingleConnectedUserType[]>({
@@ -36,8 +37,11 @@ const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUser
                 <IconExternalLink size={24} />
             </CButton>
             <div className='flex items-center justify-start flex-col gap-y-2 w-full'>
-                {isSuccess &&
-                    connectedUsersList.map((item) => <CSidebarSingleUser key={item.user.id} friendData={item} />)}
+                {isSuccess
+                    ? //render each item in sidebar
+                      connectedUsersList.map((item) => <CSidebarSingleUser key={item.user.id} friendData={item} />)
+                    : //render dummy template to generate loading of sidebar
+                      [1, 2, 3].map((item) => <CLoadingSidebar key={item} />)}
             </div>
         </>
     )
