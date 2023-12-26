@@ -4,7 +4,7 @@ import type TRoomDetailType from '@core/types/room/room-detail-type'
 
 interface ICShowChatsProps {
     roomDate: TRoomDetailType
-    socket: Socket
+    socket?: Socket
 }
 
 export default ICShowChatsProps

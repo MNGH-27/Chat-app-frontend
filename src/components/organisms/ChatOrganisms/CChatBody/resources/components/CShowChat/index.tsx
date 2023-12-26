@@ -34,13 +34,13 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
             queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.ConnectedUsersList] })
         }
 
-        socket.on(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+        socket?.on(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
 
         // Clean up the event listener when the component unmounts or when the dependency changes
         return () => {
-            socket.off(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+            socket?.off(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
         }
-    }, [isFetching, refetch, socket])
+    }, [isFetching, queryClient, refetch, socket])
 
     const { data: currentUser } = useQuery<TSingleUserType>({
         queryKey: [QueryKeysEnum.CurrentUser],

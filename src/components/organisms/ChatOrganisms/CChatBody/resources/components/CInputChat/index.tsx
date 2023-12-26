@@ -40,7 +40,7 @@ const CInputChat: FC<ICInputChatProps> = ({ socket, roomDate }) => {
     return (
         <form
             onSubmit={handleSubmit((values) => {
-                socket.emit(SocketKeysEnum.CreateMessage, {
+                socket?.emit(SocketKeysEnum.CreateMessage, {
                     context: values.context,
                     roomId: roomDate.room.id,
                     senderId: currentUser?.id,
