@@ -4,7 +4,7 @@ import { axiosInterceptor } from '@core/services/axios'
 
 const getConnectedUserListApi = async () => {
     try {
-        const response = await axiosInterceptor.get(`/room/connected-users-list`)
+        const response = await axiosInterceptor.get(`/room/connected-users`)
 
         if (response.status === 200) {
             return response.data.data
