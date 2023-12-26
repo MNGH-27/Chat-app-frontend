@@ -1,17 +1,18 @@
-import React, { forwardRef } from 'react'
+import React, { type FC, forwardRef, type Ref } from 'react'
 
-import { Input, type InputProps } from 'antd'
+import { Input, type InputProps, type InputRef } from 'antd'
 
-interface CInputProps extends InputProps {
+interface ICInputProps extends InputProps {
     variant?: 'password' | 'default' | 'textarea'
+    ref?: Ref<InputRef> | undefined
 }
 
-const CInput = forwardRef<HTMLInputElement, CInputProps>(({ variant = 'default', ...rest }) => {
+const CInput: FC<ICInputProps> = forwardRef(({ variant = 'default', ...rest }, ref) => {
     switch (variant) {
         case 'password':
-            return <Input.Password {...rest} autoComplete='new-password' />
+            return <Input.Password autoComplete='new-password' {...rest} ref={ref} />
         default:
-            return <Input autoComplete='off' {...rest} />
+            return <Input autoComplete='off' {...rest} ref={ref} />
     }
 })
 
