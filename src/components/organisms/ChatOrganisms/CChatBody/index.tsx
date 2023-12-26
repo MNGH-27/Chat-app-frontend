@@ -16,8 +16,8 @@ const CChatBody: FC<ICChatBodyProps> = ({ roomData }) => {
 
     return (
         <div className='flex flex-col items-center justify-start grow w-full h-[calc(100vh-75px)] overflow-y-auto relative'>
-            <CShowChats socket={socket} roomDate={roomData} />
-            <CInputChat socket={socket} roomDate={roomData} />
+            <CShowChats socket={socket} roomData={roomData} />
+            <CInputChat socket={socket} roomData={roomData} />
         </div>
     )
 }

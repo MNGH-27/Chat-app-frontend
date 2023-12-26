@@ -9,6 +9,8 @@ type TSingleConnectedUserType = {
         id: string
         profile: string
         userName: string
+        isOnline: boolean
+        lastSeen: Date
     }
 }
 

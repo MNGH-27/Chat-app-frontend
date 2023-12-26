@@ -29,8 +29,11 @@ const CSidebarSingleUser: FC<ICSidebarSingleUserProps> = ({ friendData }) => {
                 pathname[pathname.length - 1] === friendData.message.roomId
                     ? 'cursor-default bg-primary-200/50 hover:bg-primary-200'
                     : 'cursor-pointer hover:bg-[#f9f9f9]'
-            } flex items-center justify-between w-full max-w-full p-3 duration-200 rounded`}
+            } relative flex items-center justify-between w-full max-w-full p-3 duration-200 rounded`}
         >
+            {friendData.user.isOnline && (
+                <div className='w-3 h-3 rounded-full bg-green-700 absolute top-1 right-1'></div>
+            )}
             <div className='flex flex-col items-start justify-start gap-2 text-sm max-w-full truncate'>
                 <span className='font-semibold'>{friendData.user.userName}</span>
                 <span className='text-gray-800 text-xs truncate max-w-full'>

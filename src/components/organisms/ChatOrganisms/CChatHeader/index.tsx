@@ -2,6 +2,8 @@ import { type FC } from 'react'
 
 import CImage from '@atoms/CImage'
 
+import dateFormatter from '@core/utils/common/date-formatter'
+
 import { type ICChatHeaderProps } from './resources'
 
 const CChatHeader: FC<ICChatHeaderProps> = ({ roomData }) => {
@@ -14,7 +16,9 @@ const CChatHeader: FC<ICChatHeaderProps> = ({ roomData }) => {
                     </div>
                     <div className='flex flex-col gap-1 text-sm'>
                         <span className='font-semibold'>{roomData.receiver.userName}</span>
-                        <span className='text-gray-800 text-xs'>last message</span>
+                        <span className='text-gray-800 text-xs'>
+                            {roomData.receiver.isOnline ? <>online</> : dateFormatter(roomData.receiver.lastSeen)}
+                        </span>
                     </div>
                 </div>
             </div>

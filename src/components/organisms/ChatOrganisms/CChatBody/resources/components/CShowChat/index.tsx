@@ -13,13 +13,13 @@ import type TSingleUserType from '@core/types/user/single-user-type'
 
 import { ChatMessage, type ICShowChatsProps } from './resources'
 
-const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
+const CShowChats: FC<ICShowChatsProps> = ({ roomData, socket }) => {
     const queryClient = useQueryClient()
     const chatBody = useRef<HTMLDivElement | null>(null)
 
     const { data, isFetching, refetch } = useQuery<{ messages: TSingleMessageType[] }>({
         queryKey: [QueryKeysEnum.RoomMessageList],
-        queryFn: () => getMessageListByIdApi(roomDate.room.id),
+        queryFn: () => getMessageListByIdApi(roomData.room.id),
         refetchOnMount: true,
         refetchOnWindowFocus: true
     })
@@ -34,11 +34,18 @@ const CShowChats: FC<ICShowChatsProps> = ({ roomDate, socket }) => {
             queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.ConnectedUsersList] })
         }
 
+        const handleUserStatusChange = () => {
+            queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.ConnectedUsersList] })
+            queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.RoomDetail, { roomId: roomData.room.id }] })
+        }
+
         socket?.on(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+        socket?.on(SocketKeysEnum.UsersStatusChange, handleUserStatusChange)
 
         // Clean up the event listener when the component unmounts or when the dependency changes
         return () => {
             socket?.off(SocketKeysEnum.CheckNewMessage, handleCheckNewMessage)
+            socket?.off(SocketKeysEnum.UsersStatusChange, handleUserStatusChange)
         }
     }, [isFetching, queryClient, refetch, socket])
 

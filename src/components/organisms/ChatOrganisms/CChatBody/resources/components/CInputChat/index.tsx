@@ -19,7 +19,7 @@ import sendMessageSchema from '@core/utils/validations/send-message-schema'
 
 import { type ICInputChatProps } from './resources'
 
-const CInputChat: FC<ICInputChatProps> = ({ socket, roomDate }) => {
+const CInputChat: FC<ICInputChatProps> = ({ socket, roomData }) => {
     const {
         handleSubmit,
         control,
@@ -42,9 +42,9 @@ const CInputChat: FC<ICInputChatProps> = ({ socket, roomDate }) => {
             onSubmit={handleSubmit((values) => {
                 socket?.emit(SocketKeysEnum.CreateMessage, {
                     context: values.context,
-                    roomId: roomDate.room.id,
+                    roomId: roomData.room.id,
                     senderId: currentUser?.id,
-                    receiverId: roomDate.sender.id !== currentUser?.id ? roomDate.sender.id : roomDate.receiver.id
+                    receiverId: roomData.sender.id !== currentUser?.id ? roomData.sender.id : roomData.receiver.id
                 })
 
                 reset()
