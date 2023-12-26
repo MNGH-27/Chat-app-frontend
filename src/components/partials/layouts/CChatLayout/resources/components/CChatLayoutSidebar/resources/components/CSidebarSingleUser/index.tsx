@@ -3,13 +3,24 @@
 import { type FC } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
+import { useQuery } from '@tanstack/react-query'
+
 import CImage from '@atoms/CImage'
+
+import QueryKeysEnum from '@core/enums/query-keys'
+import getCurrentUserApi from '@core/services/api/current-user/get-current-user-api'
+import type TSingleUserType from '@core/types/user/single-user-type'
 
 import { type ICSidebarSingleUserProps } from './resources'
 
 const CSidebarSingleUser: FC<ICSidebarSingleUserProps> = ({ friendData }) => {
     const { push } = useRouter()
     const pathname = usePathname().split('/')
+
+    const { data: currentUser } = useQuery<TSingleUserType>({
+        queryKey: [QueryKeysEnum.CurrentUser],
+        queryFn: getCurrentUserApi
+    })
 
     return (
         <div
@@ -22,7 +33,10 @@ const CSidebarSingleUser: FC<ICSidebarSingleUserProps> = ({ friendData }) => {
         >
             <div className='flex flex-col items-start justify-start gap-2 text-sm max-w-full truncate'>
                 <span className='font-semibold'>{friendData.user.userName}</span>
-                <span className='text-gray-800 text-xs truncate max-w-full'>{friendData.message.context}</span>
+                <span className='text-gray-800 text-xs truncate max-w-full'>
+                    {currentUser?.id === friendData.message.senderId && 'you : '}
+                    {friendData.message.context}
+                </span>
             </div>
             <CImage
                 className='rounded-full object-cover aspect-square'

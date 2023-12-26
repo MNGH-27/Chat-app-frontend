@@ -3,6 +3,7 @@ type TSingleConnectedUserType = {
         context: string
         createdAt: Date
         roomId: string
+        senderId: string
     }
     user: {
         id: string
