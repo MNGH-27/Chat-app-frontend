@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat App using Next.js, TypeScript, Socket.Io
 
-## Getting Started
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-First, run the development server:
+This project is a real-time chat application built with Next.js and TypeScript, utilizing Atom Design System for UI components and Zustand for state management. The app enables users to communicate instantly within a web-based platform.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Real-time Messaging:** Utilizes Socket.IO for instant messaging between users.
+- **Next.js with TypeScript:** Built using Next.js along with TypeScript for enhanced static typing and developer experience.
+- **Atom Design System:** Implements UI components following the Atom Design System guidelines for consistency and reusability.
+- **Zustand State Management:** Uses Zustand, a minimalistic state management library, to manage application state.
+- **Yup for Validation:** Implements Yup for form validation.
+- **React Hook Form:** Utilizes React Hook Form for managing forms and inputs efficiently.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+To run this application locally, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/chat-app-nextjs.git
+2. **Navigate to Project Directory:**
+   ```bash
+   cd Chat-app-frontend
+3. **Install Dependencies:**
+   ```bash
+   pnpm install
+4. **Start the Development Server:**
+   ```bash
+   pnpm run dev
+   
+## Usage
+- Upon accessing the application, users will be prompted to log in or sign up.
+- Users can create accounts or log in with existing credentials.
+- Once logged in, users can join various chat rooms or create new ones.
+- Real-time messaging functionality enables users to exchange messages instantly within the chosen chat room.
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+- **Next.js with TypeScript:** A React-based web framework for building modern web applications with TypeScript.
+- **Socket.IO:** A library that enables real-time, bidirectional, and event-based communication between web clients and servers.
+- **Atom Design System:** Utilizes Atom Design System for consistent UI components and styles.
+- **Zustand:** A small, fast, and scalable state management library for React applications.
+- **Yup:** A JavaScript schema builder for value parsing and validation.
+- **React Hook Form:** A library for managing form state and validation in React applications.
+   
