@@ -37,7 +37,7 @@ const CSidebarSingleUser: FC<ICSidebarSingleUserProps> = ({ friendData }) => {
             <div className='flex flex-col items-start justify-start gap-2 text-sm max-w-full truncate'>
                 <span className='font-semibold'>{friendData.user.userName}</span>
                 <span className='text-gray-800 text-xs truncate max-w-full'>
-                    {currentUser?.id === friendData.message.senderId && 'you : '}
+                    {currentUser?.id === friendData.message.senderId && <span className='font-semibold'>you : </span>}
                     {friendData.message.context}
                 </span>
             </div>
