@@ -13,8 +13,7 @@ import getConnectedUserListApi from '@core/services/api/room/get-connected-user-
 import type TSingleConnectedUserType from '@core/types/connect-user/single-connected-user-type'
 
 import type { ICChatLayoutSidebarProps } from './resources'
-import { CSidebarSingleUser } from './resources'
-import CLoadingSidebar from './resources/components/CLoadingSidebar'
+import { CLoadingSidebar, CSidebarSingleUser } from './resources'
 
 const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUserModal }) => {
     const { data: connectedUsersList, isSuccess } = useQuery<TSingleConnectedUserType[]>({
@@ -30,18 +29,18 @@ const CChatLayoutSidebar: FC<ICChatLayoutSidebarProps> = ({ setIsShowConnectUser
             </div>
             <CButton
                 onClick={() => setIsShowConnectUserModal(true)}
-                className='w-full my-5 py-3 h-auto font-semibold'
+                className='w-full my-2 py-3 h-auto font-semibold'
                 type='primary'
             >
                 connect friend
                 <IconExternalLink size={24} />
             </CButton>
-            <div className='flex items-center justify-start flex-col gap-y-2 w-full'>
+            <div className='flex items-center justify-start flex-col gap-y-2 w-full h-full overflow-y-auto p-2'>
                 {isSuccess
                     ? //render each item in sidebar
                       connectedUsersList.map((item) => <CSidebarSingleUser key={item.user.id} friendData={item} />)
                     : //render dummy template to generate loading of sidebar
-                      [1, 2, 3].map((item) => <CLoadingSidebar key={item} />)}
+                      [1, 2, 3].map((item) => <CLoadingSidebar key={item} />)}{' '}
             </div>
         </>
     )
