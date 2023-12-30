@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { type AxiosError } from 'axios'
 import { deleteCookie, getCookie } from 'cookies-next'
 import qs from 'qs'
 
@@ -34,7 +34,7 @@ axiosInterceptorInstance.interceptors.response.use(
         } catch (error) {
             // console.error(error)
         }
-        return Promise.reject(error)
+        return Promise.reject(error as AxiosError)
     }
 )
 
@@ -43,16 +43,15 @@ axiosInterceptorInstance.interceptors.request.use(
     (config) => {
         // Modify the request config here (add headers, authentication tokens)
         const accessToken = getCookie('token')
-
         // If token is present add it to request's Authorization Header
         if (accessToken) {
-            if (config.headers) config.headers.Authorization = accessToken
+            if (config.headers) config.headers.Authorization = `Bearer ${accessToken}`
         }
         return config
     },
     (error) => {
         // Handle request errors here
-        return Promise.reject(error)
+        return Promise.reject(error as AxiosError)
     }
 )
 

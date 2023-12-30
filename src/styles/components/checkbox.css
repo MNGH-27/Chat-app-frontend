@@ -1,0 +1,3 @@
+.ant-checkbox-wrapper {
+    @apply !items-start;
+}

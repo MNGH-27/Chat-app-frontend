@@ -12,19 +12,10 @@
             "error",
             {
                 "groups": [
-                    [
-                        "^react$",
-                        "^next",
-                        "^react",
-                        "^W*",
-                        "@(?!(app|partials|atoms|molecules|organisms|templates|core|styles|public))"
-                    ],
+                    ["^react$", "^next"],
+                    ["^react", "^W*", "@(?!(app|partials|atoms|molecules|organisms|templates|core|styles|public))"],
                     ["^@app"],
-                    ["^@templates"],
-                    ["^@partials"],
-                    ["^@organisms"],
-                    ["^@molecules"],
-                    ["^@atoms"],
+                    ["^@templates", "^@partials", "^@organisms", "^@molecules", "^@atoms"],
                     ["^@core"],
                     ["^@styles"],
                     ["^@public"],

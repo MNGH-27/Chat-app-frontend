@@ -1,0 +1,7 @@
+.ant-skeleton-image {
+    @apply !w-10 !h-10;
+}
+
+.ant-skeleton-image svg {
+    @apply !w-5 !h-5;
+}

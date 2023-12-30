@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 import { RootProvider } from '@partials/providers/RootProvider'
 
+import { comfortaa } from '@core/configs/fonts'
 import { type TWrapperWithChildrenType } from '@core/types/common/wrapper-with-children'
-import { comfortaa } from '@core/utils/fonts'
 
 import '@styles/globals.css'
 
